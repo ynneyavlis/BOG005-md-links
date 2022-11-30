@@ -134,12 +134,31 @@ function leerArchivo(archivoMD) {
         });
     });
   
-    return  Promise.all(arrPromesas).then(res=>res)
+    const arrPro = Promise.all(arrPromesas).then(res=>res)
+    return arrPro
     }
+
+    const tLink = (arrProp) => {
+      return {
+        Total: arrProp.length,
+        unique: new Set(arrProp.map((arrayobjetos) => arrayobjetos.href)).size,
+      };
+    };
+  
+    
+  
+    const eLink = (arrProp) => {
+      const linkRto = arrProp.filter((link) => link.status == 404).length;
+      return {
+        Total: arrProp.length,
+        unique: new Set(arrProp.map((arrayObjetos) => arrayObjetos.href)).size,
+        Broken: linkRto,
+      };
+    };
   //  validarLink(Links).then(res=>console.log(res))
   
-   leerTodosArchivos(buscarRutasMds(rutAbsolut(ruta)))
-   .then(resAll=>validarLink(resAll))
-   .then(res=>console.log('soy yo: ', res))
+  //  leerTodosArchivos(buscarRutasMds(rutAbsolut(ruta)))
+  //  .then(resAll=>validarLink(resAll))
+  //  .then(res=>console.log('soy yo: ', res))
 
-   module.exports = {rutAbsolut,buscarRutasMds,leerTodosArchivos,validarLink}
+   module.exports = {rutAbsolut,buscarRutasMds,leerTodosArchivos,validarLink,tLink,eLink}

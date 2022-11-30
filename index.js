@@ -1,4 +1,4 @@
-const {rutAbsolut,buscarRutasMds,leerTodosArchivos, validarLink} = require("./funciones.js");
+const {rutAbsolut,buscarRutasMds,leerTodosArchivos,validarLink,} = require("./funciones.js");
 
 const ruta = process.argv[2]; //módulo que permite capturar argumentos a través de la línea de comandos y se guarda como un array.
 
@@ -20,6 +20,13 @@ function mdLinks(pathUser, options = { validate: false }) {
     })
 }
 
-mdLinks(ruta, options = { validate: false }).then(res => (res)).catch(err => (err))
+   mdLinks(ruta)
+   .then((res) => res)
+   .catch((err) => err);
+
+  
+  
+  module.exports = { mdLinks}
+
 
 
